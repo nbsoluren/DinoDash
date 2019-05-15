@@ -37,7 +37,6 @@ char keypress;
 char ignore;
 int animate = 0;
 
-
 //initials:
 int lives = 3;
 int level = 1;
@@ -101,7 +100,6 @@ int main(){
 
 }
 
-//adjust na lang na ung paa di ung ulo. tahnsk.
 void collision(){
   for(int i = 0; i<3; i++){
     if(obstacle[i]>=61 && obstacle[i]<=63&& dino_jump ==0){
@@ -111,9 +109,10 @@ void collision(){
     }
   }
 }
+
 void HomeScreen(){
-  draw(dino_text, 10, 2,9,0);
-  draw(dash_text, 20, 11,9,2);
+  draw(dino_text,10,2,9,0);
+  draw(dash_text,20,11,9,2);
   gotoxy(20,21); textcolor(YELLOW);
   printf("PRESS SPACE TO START THE GAME... \n");
   draw_road();
@@ -121,7 +120,7 @@ void HomeScreen(){
 
 void GameOverScreen(){
   clrscr();
-  draw(gameover_text, 0, 5,9,1);
+  draw(gameover_text,0,5,9,1);
   gotoxy(20,19); textcolor(YELLOW);
   printf("PRESS R TO RESTART THE GAME... \n");
   gotoxy(20,20); textcolor(YELLOW);
@@ -138,11 +137,11 @@ void GameOverScreen(){
     obstacle[0] = 0;
     obstacle[1] = -25;
     obstacle[2] = -50;
-
     main();
   }
   clrscr();
 }
+
 void draw_road(){
     textcolor(LIGHTBLUE);
     draw_line(0,21);
@@ -202,6 +201,7 @@ void draw_dinosaur(){
     draw(dinosaur2,61,pos,6,2);
   }
 }
+
 void draw_obstacles(){
     for(int i = 0; i<3; i++){
       draw(tree,obstacle[i],21,3,1);
@@ -239,32 +239,32 @@ char dash_text[9][MAX_STRING_SIZE] =
 //pakibaliktad pre. katamad. lol.
 char dinosaur[6][MAX_STRING_SIZE] =
 {
-"               __ ",
-"              / _)",
-"     _.----._/ /  ",
-"    /         /   ",
-" __/ (  | (  |    ",
-"/__.-'|_|--|_|    ",
+" __               ",
+"(_ \\              ",
+"  \\ \\_.----._     ",
+"   \\         \\    ",
+"    | )    )  \\__ ",
+"    |_|--|_|'-.__\\",
 };
-//pakibaliktad pre. katamad. lol.
+
 char dinosaur2[6][MAX_STRING_SIZE] =
 {
-"               __ ",
-"              / _)",
-"     _/\\/\\/\\_/ /  ",
-"   _|         /   ",
-" _|  (  | (  |    ",
-"/__.-'|_|--|_|    ",
+" __               ",
+"(_ \\              ",
+"  \\ \\_/\\/\\/\\_     ",
+"   \\         \\    ",
+"    | )    )  \\__ ",
+"    |_|--|_|'-.__\\",
 };
 
 char dinosaur_dead[6][MAX_STRING_SIZE] =
 {
-"                    __ ",
-"                   / _)",
-"     _/\\/\\/\\_/ /  ",
-"   _|         /   ",
-" _|  (  | (  |    ",
-"/__.-'|_|--|_|    ",
+" __               ",
+"(x \\              ",
+"  \\ \\_x x x _     ",
+"   \\         \\    ",
+"    | )    )  \\__ ",
+"    |_|--|_|'-.__\\",
 };
 
 char tree[3][MAX_STRING_SIZE] =
