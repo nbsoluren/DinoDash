@@ -47,6 +47,7 @@ int dino_jump = 0;
 int dino_position = 0;
 
 int obstacle[3] = {0,-25,-50};
+int highscore[5] = {0,0,0,0,0};
 
 int main(){
 	clrscr();
@@ -120,9 +121,43 @@ void HomeScreen(){
 	draw_road(animate_hit);
 }
 
+void process_highscore(){
+	// find index of min in the array
+	int min = highscore[0];
+	int min_index = 0;
+	for (int i = 0; i < 5; ++i) 
+	{
+		if (highscore[i] < min) 
+		{
+			min = highscore[i];
+			min_index = i;
+		}
+	}
+	// if the current score > minimum highscore, replace
+	if (score > highscore[min_index]) highscore[min_index] = score;
+	// sort the array descending
+	for (int i = 0; i < 5; i++){
+		for (int j = 0; j < 5; j++){
+			if (highscore[j] < highscore[i]){
+				int tmp = highscore[i];
+				highscore[i] = highscore[j];
+				highscore[j] = tmp;
+			}
+		}
+	}
+}
+
 void GameOverScreen(){
 	clrscr();
 	draw(gameover_text,0,5,9,1);
+	process_highscore();
+	gotoxy(5,15); textcolor(YELLOW);
+	printf("HIGHSCORE\n");
+	for (int i = 0; i < 5; ++i)
+	{
+		gotoxy(5,16+i); textcolor(YELLOW);
+		printf("%d\n", highscore[i]);
+	}
 	gotoxy(20,19); textcolor(YELLOW);
 	printf("PRESS R TO RESTART THE GAME... \n");
 	gotoxy(20,20); textcolor(YELLOW);
